@@ -46,7 +46,7 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 | TX                  | PD6 (RX)          |
 | RX                  | PD5 (TX)          |
 
-**_Team Members_** - _Bipin Raj C_ , _B Jnyanadeep_
+**_Team Members_** - _Bipin Raj C_ , _B Jnyanadeep_ <br>
 **_College_** - _RV College of Engineering_ 
 
 
