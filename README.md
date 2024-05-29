@@ -28,7 +28,7 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 
 #### **Circuit Connection Diagram**
 
-![[Pasted image 20240529154119.png]]
+![[ckt-diagram.png]]
 
 #### **Table for Pin Connection**
 
