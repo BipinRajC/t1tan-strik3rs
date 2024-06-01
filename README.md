@@ -49,6 +49,82 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 **_Team Members_** - _Bipin Raj C_ , _B Jnyanadeep_ <br>
 **_College_** - _RV College of Engineering_ 
 
+####**Code**
+#include <ch32v10x_gpio.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <TinyGPS++.h>
+#include <SoftwareSerial.h>
+
+#define PULSE_SENSOR_PIN PA1
+#define GPS_RX_PIN PA3
+#define GPS_TX_PIN PA2
+
+TinyGPSPlus gps;
+SoftwareSerial gpsSerial(GPS_RX_PIN, GPS_TX_PIN); // RX, TX
+
+void delay_ms(uint32_t ms) {
+    volatile uint32_t i, j;
+    for (i = 0; i < ms; i++)
+        for (j = 0; j < 7200; j++); // Adjust this value for your clock speed
+}
+
+void GPIO_Config(void) {
+    GPIO_InitTypeDef GPIO_InitStructure;
+
+    // Enable clock for GPIO port A
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+
+    // Configure pulse sensor pin as input
+    GPIO_InitStructure.GPIO_Pin = PULSE_SENSOR_PIN;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; // Analog input mode
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+    // Enable clock for GPIO ports for GPS module
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+}
+
+void setup() {
+    // Initialize serial communication for debugging
+    printf("Pulse Sensor Reading:\n");
+
+    // Initialize GPIO pins
+    GPIO_Config();
+
+    // Initialize GPS module
+    gpsSerial.begin(9600); // Change baud rate to match your GPS module
+}
+
+uint16_t custom_analogRead(uint8_t pin) {
+    ADC_InitTypeDef ADC_InitStructure;
+    ADC_RegularChannelConfig(ADC1, pin, 1, ADC_SampleTime_57Cycles);
+    ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+    while (!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC));
+    return ADC_GetConversionValue(ADC1);
+}
+
+void loop() {
+    // Read pulse sensor value
+    uint16_t pulseValue = custom_analogRead(PULSE_SENSOR_PIN);
+
+    // Print pulse sensor value to console
+    printf("Pulse Sensor Value: %d\n", pulseValue);
+
+    // Read GPS data
+    while (gpsSerial.available() > 0) {
+        if (gps.encode(gpsSerial.read())) {
+            if (gps.location.isValid()) {
+                // Display GPS location
+                printf("Latitude: %.6f, Longitude: %.6f\n", gps.location.lat(), gps.location.lng());
+            }
+        }
+    }
+
+    // Delay for 1 second
+    delay_ms(1000);
+}
+
+
 
 
 
