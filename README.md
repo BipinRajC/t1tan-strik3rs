@@ -53,10 +53,9 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 
 This is an example video:
 
-<video width="640" height="360" controls>
-  <source src="https://github.com/BipinRajC/t1tan-strik3rs/blob/main/working-demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/5a7ec3db-85a4-4439-8977-aebb32e45c26
+
+
 
 ## Code
 
