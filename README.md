@@ -49,7 +49,14 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 **_Team Members_** - _Bipin Raj C_ , _B Jnyanadeep_ <br>
 **_College_** - _RV College of Engineering_ 
 
-<iframe width="560" height="315" src="https://drive.google.com/file/d/1oBLYahTsrIfgOX2r5hcHIh_ROiV5tabs/view?usp=sharing" frameborder="0" allowfullscreen></iframe>
+# Demo
+
+This is an example video:
+
+<video width="640" height="360" controls>
+  <source src="https://github.com/username/repository/blob/main/videos/example.mp4?raw=true" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## Code
 
