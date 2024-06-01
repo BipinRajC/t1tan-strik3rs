@@ -49,7 +49,9 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 **_Team Members_** - _Bipin Raj C_ , _B Jnyanadeep_ <br>
 **_College_** - _RV College of Engineering_ 
 
-####**Code**
+## Code
+
+```cpp
 #include <ch32v10x_gpio.h>
 #include <stdio.h>
 #include <stdint.h>
@@ -123,13 +125,6 @@ void loop() {
     // Delay for 1 second
     delay_ms(1000);
 }
-
-
-
-
-
-
-
 
 
 
