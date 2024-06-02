@@ -60,79 +60,50 @@ _Note: GPS module bought from store seems to be faulty, was not able to interfac
 ## Code
 
 ```cpp
-#include <ch32v10x_gpio.h>
-#include <stdio.h>
-#include <stdint.h>
 #include <TinyGPS++.h>
 #include <SoftwareSerial.h>
 
-#define PULSE_SENSOR_PIN PA1
-#define GPS_RX_PIN PA3
-#define GPS_TX_PIN PA2
+#define PULSE_SENSOR_PIN A0
+#define GPS_RX_PIN 3
+#define GPS_TX_PIN 2
 
 TinyGPSPlus gps;
 SoftwareSerial gpsSerial(GPS_RX_PIN, GPS_TX_PIN); // RX, TX
 
-void delay_ms(uint32_t ms) {
-    volatile uint32_t i, j;
-    for (i = 0; i < ms; i++)
-        for (j = 0; j < 7200; j++); // Adjust this value for your clock speed
-}
-
-void GPIO_Config(void) {
-    GPIO_InitTypeDef GPIO_InitStructure;
-
-    // Enable clock for GPIO port A
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-
-    // Configure pulse sensor pin as input
-    GPIO_InitStructure.GPIO_Pin = PULSE_SENSOR_PIN;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; // Analog input mode
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
-
-    // Enable clock for GPIO ports for GPS module
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-}
-
 void setup() {
     // Initialize serial communication for debugging
-    printf("Pulse Sensor Reading:\n");
-
-    // Initialize GPIO pins
-    GPIO_Config();
+    Serial.begin(9600);
+    Serial.println("Pulse Sensor Reading:");
 
     // Initialize GPS module
     gpsSerial.begin(9600); // Change baud rate to match your GPS module
 }
 
-uint16_t custom_analogRead(uint8_t pin) {
-    ADC_InitTypeDef ADC_InitStructure;
-    ADC_RegularChannelConfig(ADC1, pin, 1, ADC_SampleTime_57Cycles);
-    ADC_SoftwareStartConvCmd(ADC1, ENABLE);
-    while (!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC));
-    return ADC_GetConversionValue(ADC1);
-}
-
 void loop() {
     // Read pulse sensor value
-    uint16_t pulseValue = custom_analogRead(PULSE_SENSOR_PIN);
+    uint16_t pulseValue = analogRead(PULSE_SENSOR_PIN);
 
     // Print pulse sensor value to console
-    printf("Pulse Sensor Value: %d\n", pulseValue);
+    Serial.print("Pulse Sensor Value: ");
+    Serial.println(pulseValue);
 
     // Read GPS data
     while (gpsSerial.available() > 0) {
         if (gps.encode(gpsSerial.read())) {
             if (gps.location.isValid()) {
                 // Display GPS location
-                printf("Latitude: %.6f, Longitude: %.6f\n", gps.location.lat(), gps.location.lng());
+                Serial.print("Latitude: ");
+                Serial.print(gps.location.lat(), 6);
+                Serial.print(", Longitude: ");
+                Serial.println(gps.location.lng(), 6);
             }
         }
     }
 
     // Delay for 1 second
-    delay_ms(1000);
+    delay(1000);
 }
+```
 
 
 
