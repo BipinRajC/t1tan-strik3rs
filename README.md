@@ -55,7 +55,7 @@ This is an example video:
 
 https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/5a7ec3db-85a4-4439-8977-aebb32e45c26
 
-_Note: GPS module bought from store seems to be faulty, was not able to interface it with given time constraint (store closed on weekends), but we will be working on this and fix it on monday_
+_Note: GPS module bought from store seems to be faulty, was not able to interface it with given time constraint (store closed on weekends), but we will be working on this and fix it on monday_ <br>
 **Code is working correctly without any errors**
 ## Code
 
