@@ -51,9 +51,9 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 
 # Demo
 
-This is an example video: (_pulse sensor detects pulse and blinks blue LED_)
+This is an example video:
 
-https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/cf003257-92be-4061-a351-5c4b49c212cf
+https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/ce573a14-30e9-45fe-a74a-cf6766077291
 
 _Note: GPS module bought from store seems to be faulty, was not able to interface it with given time constraint (store closed on weekends), but we will be working on this and fix it on monday_ <br>
 **Code is working correctly without any errors**
