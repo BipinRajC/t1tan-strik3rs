@@ -51,7 +51,7 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 
 # Demo
 
-This is an example video: (_pulse sensor detects pulse and blinks LED_)
+This is an example video: (_pulse sensor detects pulse and blinks blue LED_)
 
 https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/cf003257-92be-4061-a351-5c4b49c212cf
 
