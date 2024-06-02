@@ -23,7 +23,7 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 #### **Software Required**
 
 - Python (libraries like folium, gmplot) - [folium](https://pypi.org/project/folium/), [gmplot](https://pypi.org/project/gmplot/) 
-- PlatformIO - download from [Here](https://platformio.org/platformio-ide)
+- Arduino IDE - download from [Here](https://www.arduino.cc/en/software)
 
 
 #### **Circuit Connection Diagram**
@@ -46,9 +46,6 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 | TX                  | PD6 (RX)          |
 | RX                  | PD5 (TX)          |
 
-**_Team Members_** - _Bipin Raj C_ , _B Jnyanadeep_ <br>
-**_College_** - _RV College of Engineering_ 
-
 # Demo
 
 This is an example video:
@@ -56,7 +53,6 @@ This is an example video:
 https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/ce573a14-30e9-45fe-a74a-cf6766077291
 
 _Note: GPS module bought from store seems to be faulty, was not able to interface it with given time constraint (store closed on weekends), but we will be working on this and fix it on monday_ <br>
-**Code is working correctly without any errors**
 ## Code
 
 ```cpp
@@ -105,7 +101,8 @@ void loop() {
 }
 ```
 
-
+**_Team Members_** - _Bipin Raj C_ , _B Jnyanadeep_ <br>
+**_College_** - _RV College of Engineering_ 
 
 
 
