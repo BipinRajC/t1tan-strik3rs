@@ -50,9 +50,9 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 
 This is an example video:
 
-https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/ce573a14-30e9-45fe-a74a-cf6766077291
+https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/f391d5fc-bfee-4adb-9523-49ef7cf40934
 
-_Note: GPS module bought from store seems to be faulty, was not able to interface it with given time constraint (store closed on weekends), but we will be working on this and fix it on monday_ <br>
+_Note: GPS module has stability issue to lock onto satellite, was not able to interface it with given time constraint, we are actively working on a fix_ <br>
 ## Code
 
 ```cpp
