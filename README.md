@@ -200,16 +200,18 @@ void loop() {
 
 https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/3f373802-433c-4dff-91ea-8ed855ea724b
 
+## **_Securing the Fault in Pulse Sensor_**
 
-![image](https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/e47e66fe-75c5-4a36-88ab-8950a099895a)
-
-## Securing the Fault in Pulse Sensor
 The alpha parameter in the EMA filter 
 (sensorValue Filtered = alpha * sensorValueRaw + (1 - alpha) * sensorValueFiltered;) 
 - The controlling input of the exponential smoothing calculation is defined as the smoothing factor or the smoothing constant.
 - Exponential functions are used to assign exponentially decreasing weights over time. 
-- Fine-tune alpha based on the expected dynamics of your sensor readings and the severity of voltage faults encountered in your setup.
+- Fine-tune alpha based on the expected dynamics of your sensor readings and the severity of voltage faults encountered in your setup. <br>
 
+![image](https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/e47e66fe-75c5-4a36-88ab-8950a099895a)
+<br>
+
+https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/491fcf72-5c7d-4a03-9229-204c9aa7d82a
 
 ```cpp
 // Define constants for EMA filter
