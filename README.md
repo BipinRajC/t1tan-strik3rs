@@ -48,17 +48,16 @@ The Smart Soldier Gear project, integrated with VSD Squadron technology, enhance
 
 # Demo
 
-This is an example video:
+This is the working of our project:
 
-https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/f391d5fc-bfee-4adb-9523-49ef7cf40934
-
-_Note: GPS module has stability issue to lock onto satellite, was not able to interface it with given time constraint, we are actively working on a fix_ <br>
+https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/3a7db16f-2dcf-4336-b647-8024336c2ba6
 
 _Advantages: Keeping in mind the ultimate goal of this hackathon, that is fault injection, we believe that this could see it's applications in military wherein soldiers using such monitoring systems can keep the central unit updated about their positions and health vitals and in case of other countries' intelligence agencies trying to interfere with such systems, our aim is to pentest it and find a viable solution to safeguard such systems and keep our defences non-vulnerable and safe._
-![image](https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/f3788fa8-e94d-4b7b-a886-6d6b66aef672)
 
+![image](https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/f3788fa8-e94d-4b7b-a886-6d6b66aef672) <br>
 
-![image](https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/ed821786-9597-4420-9c9d-ce5a36fc4b29)
+![image](https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/ed821786-9597-4420-9c9d-ce5a36fc4b29) <br>
+
 
 
 ## Code
