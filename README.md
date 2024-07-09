@@ -160,13 +160,15 @@ void loop() {
 }
 ```
 
-## Fault injection in Pulse Sensor
-Voltage Glitching Exploit
-Voltage glitching involves momentarily disrupting the power supply to the microcontroller, causing it to behave unpredictably. 
+## **_Fault injection in Pulse Sensor_**
 
-Explanation
+Voltage glitching exploit involves momentarily disrupting the power supply to the microcontroller, causing it to behave unpredictably. 
+
+Explanation: <br>
 In  every 10 seconds (millis() % 10000 < 100 condition), a voltage glitch is simulated by setting sensorValue to its maximum possible value (1023 in Arduino's analogread scale).
 This simulates a scenario where the microcontroller might experience a transient voltage spike or power disturbance.
+
+##### **_Code for Pulse sensor Fault injection_**
 
 ```cpp
 int sensorValue=0;
@@ -194,6 +196,11 @@ void loop() {
   delay(1000); // Adjust the delay as needed
 }
 ```
+## **_Demo of Fault injection in Pulse sensor_**
+
+https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/3f373802-433c-4dff-91ea-8ed855ea724b
+
+
 ![image](https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/e47e66fe-75c5-4a36-88ab-8950a099895a)
 
 ## Securing the Fault in Pulse Sensor
