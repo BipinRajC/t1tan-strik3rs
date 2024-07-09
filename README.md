@@ -60,30 +60,79 @@ _Advantages: Keeping in mind the ultimate goal of this hackathon, that is fault 
 
 
 
-## Code
+## Python code for interfacing gps module and its working
 
-```cpp
-// Define the pin where the pulse sensor is connected
-const int pulsePin = A0;
+```py
+import serial
+import folium
+from folium.plugins import MarkerCluster
+from IPython.display import display, clear_output
+import time
 
-// Variable to store the sensor value
-int sensorValue = 0;
+# Initialize map centered at a default location (e.g., New York City)
+map_center = [12 + 50/60 + 41.6/3600, 77 + 39/60 + 51.0/3600]  # 12.84489, 77.66417
+mymap = folium.Map(location=map_center, zoom_start=12)
 
-void setup() {
-  // Initialize serial communication at 115200 bits per second
-  Serial.begin(9600);
-}
+# Create a marker cluster for better performance with many markers
+marker_cluster = MarkerCluster().add_to(mymap)
 
-void loop() {
-  // Read the value from the pulse sensor
-  sensorValue = analogRead(pulsePin);
+# Function to update map with new GPS coordinates
+def update_map(lat, lon):
+    folium.Marker([lat, lon]).add_to(marker_cluster)
+    mymap.save('gps_map.html')
+    # Display the updated map in Jupyter Notebook
+    clear_output(wait=True)
+    display(mymap._repr_html_())
 
-  // Print the sensor value to the Serial Monitor and Serial Plotter
-  Serial.println(sensorValue);
+# Try to initialize the serial connection with Arduino
+try:
+    ser = serial.Serial('COM3', 9600)  # Adjust 'COM3' based on your Arduino's port
+except serial.SerialException as e:
+    print(f"Could not open serial port: {e}")
+    ser = None
 
-  // Wait for a short period before reading the value again
-  delay(1000); // Adjust the delay as needed
-}
+if ser:
+    # Main loop to continuously read GPS data and update map
+    try:
+        while True:
+            if ser.in_waiting > 0:
+                data = ser.readline().decode().strip()
+                print(f"Received data: {data}")  # Debugging output
+                if data.startswith("$GPGGA"):
+                    gps_data = data.split(',')
+                    if len(gps_data) >= 10 and gps_data[2] and gps_data[4]:  # Check if latitude and longitude fields are not empty
+                        try:
+                            # Extract latitude and longitude
+                            lat_deg = int(gps_data[2][:2])
+                            lat_min = float(gps_data[2][2:])
+                            lat = lat_deg + (lat_min / 60.0)
+                            if gps_data[3] == 'S':
+                                lat = -lat
+
+                            lon_deg = int(gps_data[4][:3])
+                            lon_min = float(gps_data[4][3:])
+                            lon = lon_deg + (lon_min / 60.0)
+                            if gps_data[5] == 'W':
+                                lon = -lon
+
+                            print(f"Latitude: {lat}, Longitude: {lon}")
+                            update_map(lat, lon)
+                        except ValueError as e:
+                            print(f"Error parsing GPS data: {e}")
+                    else:
+                        print("Incomplete GPS data received.")
+            time.sleep(1)  # Adjust delay as needed to control the update frequency
+    except KeyboardInterrupt:
+        print("Mapping stopped by user.")
+    finally:
+        ser.close()
+        print("Serial connection closed.")
+
+    # Save the map to an HTML file one last time when the script ends
+    mymap.save('gps_map.html')
+    print("Map saved as 'gps_map.html'.")
+else:
+    print("Serial connection was not established. Exiting the program.")
 ```
 ## Fault injection in Pulse Sensor
 Voltage Glitching Exploit
