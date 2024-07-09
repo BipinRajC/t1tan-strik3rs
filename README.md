@@ -60,7 +60,7 @@ _Advantages: Keeping in mind the ultimate goal of this hackathon, that is fault 
 
 
 
-## Python code for interfacing gps module and its working
+## **_Python code for interfacing gps module and its working_**
 
 ```py
 import serial
@@ -134,6 +134,32 @@ if ser:
 else:
     print("Serial connection was not established. Exiting the program.")
 ```
+## **_Arduino code for pulse sensor interfacing and its working_**
+
+```
+// Define the pin where the pulse sensor is connected
+const int pulsePin = A0;
+
+// Variable to store the sensor value
+int sensorValue = 0;
+
+void setup() {
+  // Initialize serial communication at 115200 bits per second
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read the value from the pulse sensor
+  sensorValue = analogRead(pulsePin);
+
+  // Print the sensor value to the Serial Monitor and Serial Plotter
+  Serial.println(sensorValue);
+
+  // Wait for a short period before reading the value again
+  delay(1000); // Adjust the delay as needed
+}
+```
+
 ## Fault injection in Pulse Sensor
 Voltage Glitching Exploit
 Voltage glitching involves momentarily disrupting the power supply to the microcontroller, causing it to behave unpredictably. 
