@@ -55,6 +55,11 @@ https://github.com/BipinRajC/t1tan-strik3rs/assets/112572356/f391d5fc-bfee-4adb-
 _Note: GPS module has stability issue to lock onto satellite, was not able to interface it with given time constraint, we are actively working on a fix_ <br>
 
 _Advantages: Keeping in mind the ultimate goal of this hackathon, that is fault injection, we believe that this could see it's applications in military wherein soldiers using such monitoring systems can keep the central unit updated about their positions and health vitals and in case of other countries' intelligence agencies trying to interfere with such systems, our aim is to pentest it and find a viable solution to safeguard such systems and keep our defences non-vulnerable and safe._
+![image](https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/f3788fa8-e94d-4b7b-a886-6d6b66aef672)
+
+
+![image](https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/ed821786-9597-4420-9c9d-ce5a36fc4b29)
+
 
 ## Code
 
@@ -103,6 +108,53 @@ void loop() {
     delay(1000);
 }
 ```
+## Fault injection in Pulse Sensor
+Voltage Glitching Exploit
+Voltage glitching involves momentarily disrupting the power supply to the microcontroller, causing it to behave unpredictably. 
+
+Explanation
+In  every 10 seconds (millis() % 10000 < 100 condition), a voltage glitch is simulated by setting sensorValue to its maximum possible value (1023 in Arduino's analogread scale).
+This simulates a scenario where the microcontroller might experience a transient voltage spike or power disturbance.
+
+```cpp
+int sensorValue=0;
+int pulsePin=A0;
+
+void setup() {
+  // Initialize serial communication at 115200 bits per second
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Simulate voltage glitch every 10 seconds
+  if (millis() % 10000 < 100) { // Inject glitch for 100 milliseconds every 10 seconds
+    // Simulate voltage glitch by resetting sensorValue to a high value
+    sensorValue = 1023; // Max value glitch
+  } else {
+    // Read the value from the pulse sensor
+    sensorValue = analogRead(pulsePin);
+  }
+
+  // Print the sensor value to the Serial Monitor and Serial Plotter
+  Serial.println(sensorValue);
+
+  // Wait for a short period before reading the value again
+  delay(1000); // Adjust the delay as needed
+}
+```
+![image](https://github.com/BipinRajC/t1tan-strik3rs/assets/132117873/e47e66fe-75c5-4a36-88ab-8950a099895a)
+
+## Securing the Fault in Pulse Sensor
+The alpha parameter in the EMA filter 
+(sensorValue Filtered = alpha * sensorValueRaw + (1 - alpha) * sensorValueFiltered;) 
+- The controlling input of the exponential smoothing calculation is defined as the smoothing factor or the smoothing constant.
+- Exponential functions are used to assign exponentially decreasing weights over time. 
+- Fine-tune alpha based on the expected dynamics of your sensor readings and the severity of voltage faults encountered in your setup.
+
+
+
+
+
 
 **_Team Members_** - _Bipin Raj C_ , _B Jnyanadeep_ <br>
 **_College_** - _RV College of Engineering_ 
