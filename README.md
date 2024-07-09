@@ -152,6 +152,33 @@ The alpha parameter in the EMA filter
 - Fine-tune alpha based on the expected dynamics of your sensor readings and the severity of voltage faults encountered in your setup.
 
 
+```cpp
+// Define constants for EMA filter
+const float alpha = 0.2;  // Smoothing factor (adjust as needed, between 0 and 1)
+float sensorValueFiltered = 0;  // Initial filtered sensor value
+
+// Define the pin where the pulse sensor is connected
+const int pulsePin = A0;
+
+void setup() {
+  // Initialize serial communication at 9600 bits per second
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read the value from the pulse sensor
+  int sensorValueRaw = analogRead(pulsePin);
+
+  // Apply EMA filter
+  sensorValueFiltered = alpha * sensorValueRaw + (1 - alpha) * sensorValueFiltered;
+
+  // Print the filtered sensor value to the Serial Monitor and Serial Plotter
+  Serial.println(sensorValueFiltered);
+
+  // Wait for a short period before reading the value again
+  delay(1000); // Adjust the delay as needed
+}
+```
 
 
 
